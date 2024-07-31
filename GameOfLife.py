@@ -1,86 +1,86 @@
-#REGOLE Conway's Game of Life
-#1 Una cellula viva con meno di due vicini vivi MUORE (sottopopolazione).
-#2 Una cellula viva con due o tre vicini vivi rimane VIVA (sopravvivenza)
-#3 Una cellula viva con più di tre vicini vivi MUORE (sovrappopolazione)
-#4 Una cellula morta con esattamente tre vicini vivi diventa VIVA (riproduzione)
+# RULES Conway's Game of Life
+# 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+# 2. Any live cell with two or three live neighbours lives on to the next generation.
+# 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
+# 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 import pygame
 import random
 
 pygame.init()
 
-nero = (0, 0, 0) #Colori in RGB
-bianco = (255, 255, 255) #Colori in RGB
+black = (0, 0, 0) # RGB
+white = (255, 255, 255) # RGB
 
-#Costanti per la base 800 x 800 divisibile per ogni casella misura 20
-larghezza, altezza = 800, 800
-casella_misura = 20
-larghezza_griglia = larghezza // casella_misura
-altezza_griglia = altezza // casella_misura
+# 800 x 800
+width, height = 800, 800
+cell = 20
+grid_width = width // cell
+grid_height = height // cell
 FPS = 60
 
-schermo = pygame.display.set_mode((larghezza, altezza))
+screen = pygame.display.set_mode((width, height))
 
 clock = pygame.time.Clock()
 
-#Funzione per la generazione casuale degli automi
+# Function for random generation of automata
 def gen(num):
-    return set([(random.randrange(0, altezza_griglia), random.randrange(0, larghezza_griglia)) for _ in range(num)])
+    return set([(random.randrange(0, grid_height), random.randrange(0, grid_width)) for _ in range(num)])
 
-#Disegno della griglia (col = colonne generate con l'altezza dello schermo e rig = righe per la larghezza dello schermo)
-def disegna_griglia(positions):
+# Grid drawing (col = columns generated with screen height and rig = rows for screen width)
+def draw_grid(positions):
     for position in positions:
-        col, rig = position
-        top_left = (col * casella_misura, rig * casella_misura)
-        pygame.draw.rect(schermo, nero, (*top_left, casella_misura, casella_misura))
+        col, rows = position
+        top_left = (col * cell, rows * cell)
+        pygame.draw.rect(screen, black, (*top_left, cell, cell))
 
-    for rig in range(altezza_griglia):
-        pygame.draw.line(schermo, nero, (0, rig * casella_misura), (larghezza, rig * casella_misura))
+    for rows in range(grid_height):
+        pygame.draw.line(screen, black, (0, rows * cell), (width, rows * cell))
 
-    for col in range(larghezza_griglia):
-        pygame.draw.line(schermo, nero, (col * casella_misura, 0), (col * casella_misura, altezza))
+    for col in range(grid_width):
+        pygame.draw.line(screen, black, (col * cell, 0), (col * cell, height))
 
 
-def regola_griglia(positions):
-    all_caselleVicine = set()
-    nuove_posizioni = set()
+def grid(positions):
+    all_nearcells = set()
+    new_positions = set()
 
     for position in positions:
-        cas_vicine = determina_caselleVicine(position)
-        all_caselleVicine.update(cas_vicine)
+        near_cells = calculate_nearcells(position)
+        all_nearcells.update(near_cells)
 
-        cas_vicine = list(filter(lambda x: x in positions, cas_vicine))
+        near_cells = list(filter(lambda x: x in positions, near_cells))
 
-        if len(cas_vicine) in [2, 3]:
-            nuove_posizioni.add(position)
+        if len(near_cells) in [2, 3]:
+            new_positions.add(position)
 
-    for position in all_caselleVicine:
-        cas_vicine = determina_caselleVicine(position)
-        cas_vicine = list(filter(lambda x: x in positions, cas_vicine))
+    for position in all_nearcells:
+        near_cells = calculate_nearcells(position)
+        near_cells = list(filter(lambda x: x in positions, near_cells))
 
-        if len(cas_vicine) == 3:
-            nuove_posizioni.add(position)
+        if len(near_cells) == 3:
+            new_positions.add(position)
 
-    return nuove_posizioni
+    return new_positions
 
-#Tutte le regole per gli automi vivi o morti sono qua
-def determina_caselleVicine(pos):
+# Rules for living or dead automatons 
+def calculate_nearcells(pos):
     x, y = pos
-    cas_vicine = []
+    near_cell = []
     for dx in [-1, 0, 1]:
-        if x + dx < 0 or x + dx > larghezza_griglia:
+        if x + dx < 0 or x + dx > grid_width:
             continue
         for dy in [-1, 0, 1]:
-            if y + dy < 0 or y + dy > altezza_griglia:
+            if y + dy < 0 or y + dy > grid_height:
                 continue
             if dx == 0 and dy == 0:
                 continue
 
-            cas_vicine.append((x + dx, y + dy))
+            near_cell.append((x + dx, y + dy))
 
-    return cas_vicine
+    return near_cell
 
-#Richiama tutte le funzioni precedenti e inserisci le funzioni dell'inserimento e cancellazione degli automi
+# Recall all previous functions and insert functions for insertion and deletion of automata
 def main():
     running = True
     playing = False
@@ -96,9 +96,9 @@ def main():
 
         if count >= update_freq:
             count = 0
-            positions = regola_griglia(positions)
+            positions = grid(positions)
 
-        pygame.display.set_caption("Attivo" if playing else "Disattivo")
+        pygame.display.set_caption("Active" if playing else "Inactive")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -106,8 +106,8 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
-                col = x // casella_misura
-                rig = y // casella_misura
+                col = x // cell
+                rig = y // cell
                 pos = (col, rig)
 
                 if pos in positions:
@@ -125,10 +125,10 @@ def main():
                     count = 0
 
                 if event.key == pygame.K_g:
-                    positions = gen(random.randrange(4, 10) * larghezza_griglia)
+                    positions = gen(random.randrange(4, 10) * grid_width)
 
-        schermo.fill(bianco)
-        disegna_griglia(positions)
+        screen.fill(white)
+        draw_grid(positions)
         pygame.display.update()
 
 
