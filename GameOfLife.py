@@ -1,9 +1,3 @@
-# RULES Conway's Game of Life
-# 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-# 2. Any live cell with two or three live neighbours lives on to the next generation.
-# 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
-# 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-
 import pygame
 import random
 
@@ -40,7 +34,6 @@ def draw_grid(positions):
     for col in range(grid_width):
         pygame.draw.line(screen, black, (col * cell, 0), (col * cell, height))
 
-
 def grid(positions):
     all_nearcells = set()
     new_positions = set()
@@ -68,10 +61,10 @@ def calculate_nearcells(pos):
     x, y = pos
     near_cell = []
     for dx in [-1, 0, 1]:
-        if x + dx < 0 or x + dx > grid_width:
+        if x + dx < 0 or x + dx >= grid_width:
             continue
         for dy in [-1, 0, 1]:
-            if y + dy < 0 or y + dy > grid_height:
+            if y + dy < 0 or y + dy >= grid_height:
                 continue
             if dx == 0 and dy == 0:
                 continue
@@ -82,6 +75,8 @@ def calculate_nearcells(pos):
 
 # Recall all previous functions and insert functions for insertion and deletion of automata
 def main():
+    global cell, grid_width, grid_height
+    
     running = True
     playing = False
     count = 0
@@ -124,13 +119,37 @@ def main():
                     playing = False
                     count = 0
 
+                # G Key
                 if event.key == pygame.K_g:
                     positions = gen(random.randrange(4, 10) * grid_width)
+                
+                # LEFT Arrow
+                if event.key == pygame.K_LEFT:
+                    if update_freq < 240:
+                        update_freq += 10
+                
+                # RIGHT Arrow
+                if event.key == pygame.K_RIGHT:
+                    if update_freq > 10:
+                        update_freq -= 10
+
+                # UP Arrow 
+                if event.key == pygame.K_UP:
+                    if cell < 40:
+                        cell += 1
+                        grid_width = width // cell
+                        grid_height = height // cell
+
+                # DOWN Arrow
+                if event.key == pygame.K_DOWN:
+                    if cell > 5:
+                        cell -= 1
+                        grid_width = width // cell
+                        grid_height = height // cell
 
         screen.fill(white)
         draw_grid(positions)
         pygame.display.update()
-
 
     pygame.quit()
 
