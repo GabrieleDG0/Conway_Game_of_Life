@@ -1,55 +1,59 @@
-# Conway's Game of Life 
+# Conway's game of life
 
 ## Introduction
-Conway's Game of Life is a cellular automaton devised by the mathematician John Horton Conway in 1970. It is a zero-player game, meaning its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
+Conway's Game of Life is a cellular automaton developed in 1970 by the mathematician John Horton Conway. It is a zero-player game, i.e. its development is determined by its initial state and requires no further input. You interact with the Game of Life by creating an initial configuration and observing how it evolves.
 
 ## Rules
 The Game of Life is played on a grid of square cells. Each cell can be in one of two states: alive or dead. The state of each cell in the next generation is determined by the following rules:
 
-- Underpopulation: Any live cell with fewer than two live neighbours dies.
-- Survival: Any live cell with two or three live neighbours lives on to the next generation.
-- Overpopulation: Any live cell with more than three live neighbours dies.
-- Reproduction: Any dead cell with exactly three live neighbours becomes a live cell.
+- Underpopulation: any living cell with fewer than two living neighbours dies.
+- Survival: Every living cell with two or three living neighbours lives on in the next generation.
+- Overpopulation: Every living cell with more than three living neighbours dies.
+- Reproduction: Every dead cell with exactly three living neighbours becomes a living cell.
 
-***Implementation Overview***
+***Overview of the implementation***
 
-This implementation of Conway's Game of Life is built using Pygame, a popular library for creating games and multimedia applications in Python. 
+This implementation of Conway's Game of Life was created using Pygame, a popular library for creating games and multimedia applications in Python.
 
-## Setup and Initialization
-1) Pygame Initialization: The Pygame library is initialized to handle graphics and events.
-2) Color Definitions: Colors for the cells and grid lines are defined.
-3) Screen and Grid Dimensions: The screen dimensions and grid size are set to create a playing field.
+## Setup and initialization
+1) Initialising Pygame: The Pygame library is initialised to process graphics and events.
+2) Colour definitions: The colours for the cells and gridlines are defined.
+3) Screen and grid dimensions: The dimensions of the screen and the size of the grid are defined to create a game field.
 
-#### Drawing the Grid
-4) Grid Drawing: Functions are provided to draw the grid lines and cells on the screen. Live cells are drawn as filled squares.
+#### Drawing the grid
+4) Drawing the grid: Functions are provided for drawing the grid lines and cells on the screen. Live cells are drawn as filled squares.
 
-#### Game Logic
-5) Cell Updates: Functions are provided to calculate the next state of the grid based on the current configuration of live and dead cells. This includes checking neighboring cells and applying the rules of the game.
+#### Game logic
+5) Cell updates: Functions are provided to calculate the next state of the grid based on the current configuration of live and dead cells. This includes checking neighboring cells and applying the rules of the game.
 
-#### User Interaction
-- Mouse Interaction: Clicking on the grid toggles the state of the cells (alive or dead).
-- Keyboard Controls:
+#### User interaction
+- Mouse interaction: Clicking on the grid toggles the state of the cells (alive or dead).
+- Keyboard controls:
   - Spacebar: Starts or pauses the simulation.
-  - C Key: Clears the grid, resetting all cells to dead.
-  - G Key: Generates a new random configuration of live cells.
+  - Key C: Deletes the grid and resets all cells to dead.
+  - Key G: Creates a new random configuration of living cells.
 
-#### Main Loop
-Game Loop: The main loop of the program handles the frame rate, checks for user input, updates the cell states, and redraws the grid.
+#### Main loop
+Game loop: The main loop of the program controls the frame rate, checks for user input, updates the cell states and redraws the grid.
 
-## Applications and Simulations
+## Applications and simulations
 Conway's Game of Life, while simple, has profound implications and applications in various fields:
 
-### Computer Science
-- Algorithm Development: The Game of Life is used to teach and explore algorithms, data structures, and computational theory.
-- Artificial Life: It serves as a model for artificial life research, simulating how simple rules can lead to complex behaviors and structures.
+### Computer science
+- Algorithm development: The Game of Life is used to teach and explore algorithms, data structures, and computational theory.
+- Artificial life: It serves as a model for the study of artificial life by simulating how simple rules can lead to complex behaviors and structures.
+
 ### Mathematics
-- Complex Systems: It demonstrates how local interactions can produce global patterns, making it a valuable tool for studying complex systems and emergent phenomena.
-- Fractals and Chaos Theory: The Game of Life is used to explore concepts in fractals and chaos theory due to its unpredictable and varied patterns.
+- Complex systems: It shows how local interactions can give rise to global patterns, making it a valuable tool for the study of complex systems and emergent phenomena.
+- Fractals and Chaos Theory: The game of life is used to study concepts of fractals and chaos theory due to its unpredictable and diverse patterns.
+
 ### Biology
-- Population Dynamics: It can simulate basic population dynamics and interactions within ecological systems.
-- Cellular Processes: The rules can be analogous to biological processes such as reproduction, survival, and death in cellular structures.
+- Population dynamics: It can simulate basic population dynamics and interactions within ecological systems.
+- Cellular processes: The rules may be analogous to biological processes such as reproduction, survival and death in cellular structures.
+
 ### Physics
-- Statistical Mechanics: The Game of Life is used to model systems in statistical mechanics, exploring how microscopic rules lead to macroscopic phenomena.
-### Art and Design
-- Generative Art: Artists use the Game of Life to create generative art, exploring the aesthetic potential of algorithmic processes.
-- Pattern Formation: Designers study the formation of patterns and structures to apply them in various creative fields.
+- Statistical Mechanics: The game of life is used to model systems of statistical mechanics and investigate how microscopic rules lead to macroscopic phenomena.
+
+### Art and design
+- Generative art: Artists use the Game of Life to create generative art and explore the aesthetic potential of algorithmic processes.
+- Pattern formation: Designers investigate the formation of patterns and structures in order to apply them in various creative fields.
