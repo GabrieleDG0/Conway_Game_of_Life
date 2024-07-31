@@ -27,6 +27,7 @@ This implementation of Conway's Game of Life was created using Pygame, a popular
 5) Cell updates: Functions are provided to calculate the next state of the grid based on the current configuration of live and dead cells. This includes checking neighboring cells and applying the rules of the game.
 
 ## User interaction
+Run the python file and use the following commands:
 - Mouse interaction: Clicking on the grid toggles the state of the cells (alive or dead).
 - Keyboard controls:
   - Spacebar: Starts or pauses the simulation.
