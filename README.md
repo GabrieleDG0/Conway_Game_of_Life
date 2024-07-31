@@ -55,6 +55,10 @@ Conway's Game of Life, while simple, has profound implications and applications 
 - Population dynamics: It can simulate basic population dynamics and interactions within ecological systems.
 - Cellular processes: The rules may be analogous to biological processes such as reproduction, survival and death in cellular structures.
 
+## Contributes
+- Official site for playing Conway's Game of Life: https://playgameoflife.com/
+- Wikipedia if you want to learn more: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
 ### Physics
 - Statistical Mechanics: The game of life is used to model systems of statistical mechanics and investigate how microscopic rules lead to macroscopic phenomena.
 
