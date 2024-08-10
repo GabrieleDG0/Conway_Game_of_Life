@@ -1,0 +1,15 @@
+Game Of Life EXE version
+
+To make it easier for users to run the Python scripts without needing to have Python installed, I’ve added a .rar file that contains the scripts compiled as .exe files.
+
+What’s been added:
+A .rar archive containing the Python scripts compiled into .exe format.
+
+How to use it:
+- Download the .rar file from the repository.
+- Extract the contents of the .rar file to a folder of your choice.
+- Run the .exe file to execute the script without needing to install Python.
+
+Note: The .exe version is provided to simplify usage and should work on any Windows system without additional dependencies.
+
+If you encounter any issues or have questions, feel free to open an issue in the repository.
