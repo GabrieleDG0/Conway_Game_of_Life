@@ -4,7 +4,7 @@
 Conway's Game of Life is a cellular automaton developed in 1970 by the mathematician John Horton Conway. It is a zero-player game, i.e. its development is determined by its 
 initial state and requires no further input. You interact with the Game of Life by creating an initial configuration and observing how it evolves. 
 
-**You can find a .exe file, inside the .rar file, if you want to try the project, without needing to install Python, if you have a Windows system.**
+**You can find a .exe file, inside the Release section of Github, if you want to try the project, without needing to install Python, if you have a Windows system.**
 
 ## Rules
 The Game of Life is played on a grid of square cells. Each cell can be in one of two states: alive or dead. The state of each cell in the next generation is determined by the following rules:
